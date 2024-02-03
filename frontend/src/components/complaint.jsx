@@ -1,48 +1,61 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 const complaint = () => {
   return (
-    <div class="border border-gray-100 shadow-gray-500/20 mt-8 mb-8 max-w-md bg-white shadow-sm sm:rounded-lg sm:shadow-lg lg:mt-0">
-      <div class="relative border-b border-gray-300 p-4 py-8 sm:px-8">
-        <h3 class="mb-1 inline-block text-3xl font-medium">
-          <span class="mr-4">Submit Complaint</span>
-          <span class="inline-block rounded-md bg-blue-100 px-2 py-1 text-sm text-blue-700 sm:inline">
-            Quick Response
-          </span>
-        </h3>
-        <p class="text-gray-600">Contact us for hostel grievance redressal</p>
+    <>
+      <div className="flex min-h-screen w-full items-center justify-center bg-gray-50">
+        <div className="relative mt-20 border border-gray-100 shadow-gray-500/20 max-w-md bg-white rounded-lg shadow-lg">
+          <div className="relative border-b border-gray-300 p-4 py-2 ">
+            <h3 className="mb-2 inline-block text-3xl font-medium">
+              <span className=" block">Complaint Form</span>
+              <span className="inline-block rounded-md bg-gray-100 px-2 py-2 text-sm text-orange-600 ">
+                Quick Response
+              </span>
+            </h3>
+          </div>
+          <div className="p-4">
+            <input
+              id="name"
+              type="text"
+              className="my-2 w-full resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-orange-500 focus:outline-none "
+              placeholder="Enter your name"
+              onChange={(e) => setName(e.target.value)}
+            />
+            <div className="flex gap-2">
+              <input
+                id="rollnumber"
+                type="text"
+                className="w-full sm:w-auto my-2 resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-orange-500 focus:outline-none "
+                placeholder="Roll number"
+                onChange={(e) => setRoom(e.target.value)}
+              />
+              <input
+                id="issue"
+                type="text"
+                className="w-full sm:w-auto my-2 resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-orange-500 focus:outline-none "
+                placeholder="Roll number"
+                onChange={(e) => setRoom(e.target.value)}
+              />
+            </div>
+            <label className="mt-5 mb-2 inline-block max-w-full">
+              Brief the problem you are facing
+            </label>
+            <textarea
+              id="about"
+              className="mb-8 w-full resize-y overflow-auto rounded-lg border border-gray-300 px-6 py-6 shadow-sm focus:border-orange-500 focus:outline-none hover:border-white-500"
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
+            <button
+              className="w-full rounded-lg border border-newpurple bg-newpurple p-3 text-center font-medium text-white outline-none transition focus:ring hover:border-[#75237a] hover:bg-[#75237a] focus:bg-[#75237a] focus:border-[#75237a] hover:text-white"
+              // onClick={onSubmitForm}
+            >
+              Submit
+            </button>
+          </div>
+        </div>
       </div>
-      <div class="p-4 sm:p-8">
-        <input
-          id="name"
-          type="text"
-          class="mt-1 w-full resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:outline-none hover:border-blue-500"
-          placeholder="Enter Complaint name"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          id="email"
-          type="text"
-          class="peer mt-8 w-full resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:outline-none hover:border-blue-500"
-          placeholder="Enter your Room No."
-          onChange={(e) => setRoom(e.target.value)}
-        />
-        <label class="mt-5 mb-2 inline-block max-w-full">
-          Tell us about your grievance
-        </label>
-        <textarea
-          id="about"
-          class="mb-8 w-full resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:outline-none hover:border-blue-500"
-          onChange={(e) => setDescription(e.target.value)}
-        ></textarea>
-        <button
-          class="w-full rounded-lg border border-blue-700 bg-blue-700 p-3 text-center font-medium text-white outline-none transition focus:ring hover:border-blue-700 hover:bg-blue-600 hover:text-white"
-          // onClick={onSubmitForm}
-        >
-          Submit
-        </button>
-      </div>
-    </div>
+    </>
   );
 };
 
