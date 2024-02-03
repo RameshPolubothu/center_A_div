@@ -99,6 +99,33 @@ app.post("/register", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+app.post("/complaintRegister", async (req, res) => {
+  const { description, rollNumber, issue } = req.body;
+
+  try {
+    await client.query(
+      "INSERT INTO complaint (created_by, assigned_at, label, description, mailid) VALUES ($1, current_timestamp, $2, $3, $4)",
+      [rollNumber, issue, description, "admin@gmail.com"]
+    );
+
+    res.status(200).json({ message: "Complaint registered successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+app.get("/complaintsList", async (req, res) => {
+  try {
+    const result = await client.query("SELECT * FROM complaint");
+    const complaints = result.rows;
+
+    res.json(complaints);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

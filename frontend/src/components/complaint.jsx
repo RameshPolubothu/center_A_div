@@ -1,11 +1,49 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import { React, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { Navbar2 } from "./components";
 
 const complaint = () => {
+  const [fullname, setFullName] = useState("");
+  const [rollNumber, setRollNumber] = useState("");
+  const [description, setDescription] = useState("");
+  const [issue, setIssue] = useState("");
+  const navigate = useNavigate();
+
+  const onSubmitForm = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Basic form validation (customize as needed)
+      if (!fullname || !rollNumber || !description || !issue) {
+        console.error("All fields are required.");
+        return;
+      }
+
+      const response = await axios.post(
+        "http://localhost:3000/complaintRegister",
+        {
+          fullname,
+          rollNumber,
+          description,
+          issue,
+        }
+      );
+
+      if (response.data.success) {
+        console.log("Complaint registered successfully:", response.data);
+        navigate("/dashboard");
+      } else {
+        console.error("Complaint registration failed:", response.data);
+      }
+    } catch (error) {
+      console.error("An error occurred during complaint registration:", error);
+    }
+  };
+
   return (
     <>
-    <Navbar2/>
+      <Navbar2 />
       <div className="flex min-h-screen w-full items-center justify-center bg-gray-50">
         <div className="relative mt-20 border border-gray-100 shadow-gray-500/20 max-w-md bg-white rounded-lg shadow-lg">
           <div className="relative border-b border-gray-300 p-4 py-2 ">
@@ -22,7 +60,7 @@ const complaint = () => {
               type="text"
               className="my-2 w-full resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-orange-500 focus:outline-none "
               placeholder="Enter your name"
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setFullName(e.target.value)}
             />
             <div className="flex gap-2">
               <input
@@ -30,20 +68,21 @@ const complaint = () => {
                 type="text"
                 className="w-full sm:w-auto my-2 resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-orange-500 focus:outline-none "
                 placeholder="Roll number"
-                onChange={(e) => setRoom(e.target.value)}
+                onChange={(e) => setRollNumber(e.target.value)}
               />
               <select
-                 id="issue"
-                 className="w-full sm:w-auto my-2 resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-orange-500 focus:outline-none"
-                 onChange={(e) => setRoom(e.target.value)}
->
-                  <option disabled value="" selected style={{ color: '#888888' }}>Issue regarding</option>
-                  <option value="food">Food</option>
-                  <option value="water">Water</option>
-                  <option value="electricity">Electricity</option>
-                  <option value="hostel_affairs">Hostel Affairs</option>
+                id="issue"
+                className="w-full sm:w-auto my-2 resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-orange-500 focus:outline-none"
+                onChange={(e) => setRoom(e.target.value)}
+              >
+                <option disabled value="" selected style={{ color: "#888888" }}>
+                  Issue regarding
+                </option>
+                <option value="food">Food</option>
+                <option value="water">Water</option>
+                <option value="electricity">Electricity</option>
+                <option value="hostel_affairs">Hostel Affairs</option>
               </select>
-
             </div>
             <label className="mt-5 mb-2 inline-block max-w-full">
               Brief the problem you are facing
@@ -55,7 +94,7 @@ const complaint = () => {
             ></textarea>
             <button
               className="w-full rounded-lg border border-newpurple bg-newpurple p-3 text-center font-medium text-white outline-none transition focus:ring hover:border-[#75237a] hover:bg-[#75237a] focus:bg-[#75237a] focus:border-[#75237a] hover:text-white"
-              // onClick={onSubmitForm}
+              onClick={onSubmitForm}
             >
               Submit
             </button>
