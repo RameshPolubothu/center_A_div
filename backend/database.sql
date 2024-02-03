@@ -21,7 +21,7 @@ CREATE TABLE complaint (
     created_by INTEGER REFERENCES student(roll_no),
     assigned_at TIMESTAMP,
     description TEXT,
-    label VARCHAR(1) CHECK (label IN ('1', '2', '3', '4')), -- Add label column
+    label VARCHAR(20) CHECK (label IN ('food', 'water', 'electricity', 'hostel issues')), -- Add label column
     mailid VARCHAR(255), -- Add mailid column
     upvotes INTEGER DEFAULT 1
 );

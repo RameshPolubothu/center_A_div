@@ -87,6 +87,20 @@ app.post('/complaintRegister', async (req, res) => {
   }
 });
 
+app.get('/complaintsList', async (req, res) => {
+  try {
+
+    const result = await client.query('SELECT * FROM complaint');
+    const complaints = result.rows;
+
+    res.json(complaints);
+
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

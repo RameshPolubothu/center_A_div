@@ -1,46 +1,44 @@
-import React from "react";
+import {React, useState, useEffect} from "react";
 import { Categories, MajorIssues } from "./components";
 
 // RETRIEVE DATA FROM DATABASE AND SHOW IT HERE
 // MOST UPVOTED COMMUNITY COMPLAINT IN THE PAST 3 or 2 DAYS
 
 const dashboard = () => {
+  const [complaints, setComplaints] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/complaintsList');
+      const data = await response.json();
+      console.log(data);
+      setComplaints(data);
+
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
   return (
     <>
       <div className="flex flex-col lg:flex-row">
         <section className="text-gray-600 overflow-hidden w-full lg:w-3/4">
           <div className="container px-10 py-24 mx-auto">
             <div className="m-4 divide-y-2 divide-newpurple">
-              <MajorIssues
-                roll_no="210010012"
-                timestamp=""
-                category="FOOD"
-                heading="Regarding the maintenance of mess and cleanliness"
-                description="Hey everyone, noticed some utensils haven't been cleaned thoroughly
-          lately. Let's make sure we give them a good wash to keep our shared
-          spaces clean and hygienic. Your cooperation is much appreciated! 🍽️🧼
-          #CleanUpCrew"
-              />
-              <MajorIssues
-                roll_no="210020014"
-                timestamp=""
-                category="WATER"
-                heading="Regarding the maintenance of mess and cleanliness"
-                description="Hey everyone, noticed some utensils haven't been cleaned thoroughly
-          lately. Let's make sure we give them a good wash to keep our shared
-          spaces clean and hygienic. Your cooperation is much appreciated! 🍽️🧼
-          #CleanUpCrew"
-              />
-              <MajorIssues
-                roll_no="210020018"
-                timestamp=""
-                category="ELECTRICITY"
-                heading="Regarding the maintenance of mess and cleanliness"
-                description="Hey everyone, noticed some utensils haven't been cleaned thoroughly
-          lately. Let's make sure we give them a good wash to keep our shared
-          spaces clean and hygienic. Your cooperation is much appreciated! 🍽️🧼
-          #CleanUpCrew"
-              />
+              {complaints.map((complaint) => (
+                <MajorIssues
+                  key={complaint.id}
+                  roll_no={complaint.created_by}
+                  timestamp={new Date(complaint.created_at).toLocaleString()}
+                  category={complaint.label}
+                  heading={"Problems regarding " + complaint.label}
+                  description={complaint.description}
+                />
+              ))}
+
             </div>
           </div>
         </section>

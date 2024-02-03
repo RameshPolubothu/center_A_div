@@ -26,7 +26,7 @@ const complaint = () => {
         issue,
       });
   
-      if (response.status === 200 && response.data.success) {
+      if (response.data.success) {
         console.log('Complaint registered successfully:', response.data);
         navigate('/dashboard'); 
       } else {
@@ -71,10 +71,10 @@ const complaint = () => {
                  onChange={(e) => setIssue(e.target.value)}
                 >
                   <option disabled value="" selected style={{ color: '#888888' }}>Issue regarding</option>
-                  <option value="1">Food</option>
-                  <option value="2">Water</option>
-                  <option value="3">Electricity</option>
-                  <option value="4">Hostel Affairs</option>
+                  <option value="food">Food</option>
+                  <option value="water">Water</option>
+                  <option value="electricity">Electricity</option>
+                  <option value="hostel issues">Hostel Affairs</option>
               </select>
 
             </div>
