@@ -1,12 +1,20 @@
 import React from "react";
-import { Navbar, Login, Register } from "./components/comps";
+import {
+  Navbar,
+  Login,
+  Register,
+  Complaint,
+  Dashboard,
+  Categories,
+  Details,
+} from "./components/components";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
 } from "react-router-dom";
-import { Home, About, Contact } from "./sections/sec";
+import { Home, About, Contact } from "./sections/sections";
 
 const App = () => {
   return (
@@ -20,6 +28,7 @@ const App = () => {
 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
   );

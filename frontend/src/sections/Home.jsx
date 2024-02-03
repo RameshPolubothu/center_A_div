@@ -5,20 +5,14 @@ const Home = () => {
   return (
     <section className="w-full min-h-screen flex flex-col xl:flex-row justify-center gap-10 max-container">
       <div className="relative flex flex-col justify-center items-start w-full xl:w-3/5 pt-28 ps-10 max-xl:padding-x">
-        <h3 className="mb-6 font-palanquin font-bold text-3xl text-orange-600 max-sm:text-3xl">
+        <h3 className="mb-6 font-palanquin font-bold text-orange-600 text-3xl max-sm:text-3xl">
           Discover IUHD: Elevating Campus Living
         </h3>
+
         <p className="mb-5 text-xl font-semibold">
           Welcome to IIT Dharwad's Pinnacle of Campus Assistance
         </p>
 
-        {/* <h1 className="mt-10 font-palanquin font-bold text-8xl max-sm:text-[72px] max-sm:leading-[82px]">
-          <span className="xl:bg-white xl:whitespace-nowrap relative z-20 pr-8">
-            The New Arrival
-          </span>
-          <br />
-          <span className="text-coral-red inline-block mt-3">Nike</span> Shoes
-        </h1> */}
         <p className="mb-10 text-md text-gray-600 leading-relaxed text-wrap sm:max-w-lg">
           Embark on a transformative journey with the IITdh Unified HelpDesk
           (IUHD), where cutting-edge technology converges with the heartbeat of
@@ -26,10 +20,6 @@ const Home = () => {
           seamlessly connected and empowered campus living experience.{" "}
         </p>
 
-        {/* <p className="font-montserrat text-slate-gray text-lg leading-8 text-wrap mt-6 mb-14 sm:max-w-sm">
-          Discover stylish Nike arrivals, quality comfort, and innovation for
-          your active life
-        </p> */}
         <div className="mb-5 text-wrap sm:max-w-xl">
           <p className="mb-2 font-semibold">Confidentiality Assured</p>
           <span className="text-gray-600">

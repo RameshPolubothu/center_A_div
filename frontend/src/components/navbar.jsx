@@ -1,14 +1,24 @@
-import React from "react";
+import { React, useState } from "react";
 import { navLinks } from "../data/constants";
 import { hamburger, logo1, logo2 } from "../assets/images";
 import { Link } from "react-router-dom";
 
 const navbar = () => {
+  const [activeNavLink, setActiveNavLink] = useState("home");
+
+  const handleNavLinkClick = (navLink) => {
+    setActiveNavLink(navLink);
+  };
+
   return (
     <>
       <header className="px-8 sm:px-16 py-3 fixed z-30 w-full bg-[#89288f]">
         <nav className="flex justify-between items-center max-container">
-          <Link to="/" className="flex">
+          <Link
+            to={"/"}
+            className="flex"
+            onClick={() => handleNavLinkClick("home")}
+          >
             <img
               src={logo1}
               alt="college logo"
@@ -30,7 +40,12 @@ const navbar = () => {
               <li key={item.label}>
                 <Link
                   to={item.to}
-                  className="font-montserrat leading-normal text-lg pb-1 text-slate-50 hover:border-b-[3px] border-orange-500"
+                  className={`font-montserrat leading-normal text-lg pb-1 text-slate-50 hover:border-b-[3px] border-orange-500 ${
+                    activeNavLink === item.id
+                      ? "border-b-[3px] border-orange-500"
+                      : ""
+                  }`}
+                  onClick={() => handleNavLinkClick(item.id)}
                 >
                   {item.label}
                 </Link>
@@ -47,7 +62,7 @@ const navbar = () => {
             </Link>
             <Link
               className="text-white border-2 border-newpurple hover:border-2 hover:border-white hover:rounded-lg px-4 py-2"
-              to={"/register"}
+              to={"/dashboard"}
             >
               Register
             </Link>

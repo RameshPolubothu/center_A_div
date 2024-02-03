@@ -1,5 +1,5 @@
 import { useState, React } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const login = () => {
   const [email, setEmail] = useState("");
@@ -11,7 +11,7 @@ const login = () => {
           <div className="relative flex flex-col sm:w-[30rem] rounded-lg bg-white shadow-lg px-4">
             <div className="flex-auto p-6">
               <div className="mb-6 flex flex-shrink-0 flex-grow-0 items-center justify-center overflow-hidden">
-                <span className="flex items-center gap-2 text-[#89288f] flex-shrink-0 text-3xl font-black  tracking-tight opacity-100">
+                <span className="flex items-center gap-2 text-[#89288f] flex-shrink-0 text-3xl font-black tracking-normal opacity-100">
                   Login
                 </span>
               </div>
@@ -68,6 +68,7 @@ const login = () => {
                   <button
                     className="grid w-full cursor-pointer select-none rounded-md border bg-newpurple py-2 px-5 text-center align-middle text-sm font-bold text-white shadow hover:border-[#75237a] hover:bg-[#75237a] hover:text-white focus:border-[#75237a] focus:bg-[#75237a] focus:text-white focus:shadow-none tracking-wide"
                     type="submit"
+                    // onClick={handleButtonClick}
                   >
                     Sign in
                   </button>

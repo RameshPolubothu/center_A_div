@@ -61,7 +61,7 @@ function register() {
           <div className="relative flex sm:w-full md:w-[30rem] rounded-lg border-gray-600 bg-white shadow-lg px-4">
             <div className="flex-auto p-6">
               <div className="mb-6 flex flex-shrink-0 flex-grow-0 items-center justify-center overflow-hidden">
-                <span className="flex items-center gap-2 text-[#89288f] flex-shrink-0 text-3xl font-black  tracking-tight opacity-100">
+                <span className="flex items-center gap-2 text-[#89288f] flex-shrink-0 text-3xl font-black  tracking-normal opacity-100">
                   Sign Up
                 </span>
               </div>
@@ -169,7 +169,7 @@ function register() {
                       htmlFor="blockId"
                       className="mb-2 inline-block text-xs font-medium uppercase text-gray-700"
                     >
-                      WING
+                      Block ID
                     </label>
                     <div className="relative">
                       <select
@@ -243,7 +243,7 @@ function register() {
                     className="grid w-full cursor-pointer select-none rounded-md border bg-newpurple py-2 px-5 text-center align-middle text-sm font-bold text-white shadow hover:border-[#75237a] hover:bg-[#75237a] hover:text-white focus:border-[#75237a] focus:bg-[#75237a] focus:text-white focus:shadow-none tracking-wide"
                     // onClick={onSubmit}
                   >
-                    Sign in
+                    Sign Up
                   </button>
                 </div>
               </form>
