@@ -10,6 +10,7 @@ export default function register() {
   const [hostel_no, setHostel_No] = useState("");
   const [wing, setWing] = useState("");
   const [room, setRoom] = useState("");
+  const navigate = useNavigate();
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,6 +26,7 @@ export default function register() {
       });
     
       console.log(response.data.message);
+      navigate('/dashboard');
     } catch (error) {
       console.log(error.response.data.error);
     }

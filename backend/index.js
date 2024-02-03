@@ -34,7 +34,7 @@ app.post('/login', async (req, res) => {
         const token = jwt.sign({ userId: user.student_id }, 'secret-key', { expiresIn: '1h' });
 
         res.json({ token });
-        res.redirect('/dashboard');
+        
       } else {
         res.status(401).json({ error: 'Invalid password' });
       }
@@ -65,7 +65,7 @@ app.post('/register', async (req, res) => {
     await client.query('INSERT INTO student (name, password_hash, email, roll_no, hostel_no, wing, room_no, mobile_number) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [name, hashedPassword, email, roll_no, hostel_no, wing, room_no, mobile_number]);
 
     res.status(201).json({ message: 'User registered successfully' });
-    res.redirect('/dashboard');
+
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: 'Internal server error' });

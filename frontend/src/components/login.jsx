@@ -1,9 +1,11 @@
 import { useState, React } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -17,11 +19,12 @@ const login = () => {
       if(response.data){
       const token = response.data.token;
       localStorage.setItem('token', token);
+      navigate('/dashboard');
       } else {
         console.log('Invalid response format from server!');
       }
     } catch (error) {
-      console.error(error.response.data.error);
+      console.error(error);
     }
   };
 
