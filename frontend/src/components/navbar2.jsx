@@ -3,9 +3,10 @@ import { navLinks } from "../data/constants";
 import { hamburger, logo1, logo2 } from "../assets/images";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const navbar2 = () => {
   const [activeNavLink, setActiveNavLink] = useState("home");
   const [showDropdown, setShowDropdown] = useState(false);
+  const [loginBool,setLoginBool] = useState(false);
 
   const handleNavLinkClick = (navLink) => {
     setActiveNavLink(navLink);
@@ -59,20 +60,20 @@ const Navbar = () => {
               ))}
               <li>
                 <Link
-                  to={"/login"}
+                  to={"/home"}
                   className="block text-white text-lg py-2 hover:bg-orange-500 hover:text-white border-b-[1px] border-white"
                 >
-                  Sign In
+                  Sign out
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   to={"/dashboard"}
                   className="block text-white text-lg py-2 hover:bg-orange-500 hover:text-white"
                 >
                   Register
                 </Link>
-              </li>
+              </li> */}
             </ul>
           )}
         </div>
@@ -98,20 +99,20 @@ const Navbar = () => {
         <div className=" flex gap-4 justify-end max-lg:hidden">
           <Link
             className="bg-white text-[#89288f] border-[3px] border-[#89288f] rounded-lg px-4 py-2 hover:border-orange-500"
-            to={"/login"}
+            to={"/home"}
           >
-            Sign In
+            Sign out
           </Link>
-          <Link
-            className="text-white border-[3px] border-newpurple hover:border-[3px] hover:border-orange-500 hover:rounded-lg px-4 py-2"
+          {/* <Link
+            className="text-white border-2 border-newpurple hover:border-2 hover:border-white hover:rounded-lg px-4 py-2"
             to={"/register"}
           >
             Register
-          </Link>
+          </Link> */}
         </div>
       </nav>
     </header>
   );
 };
 
-export default Navbar;
+export default navbar2;

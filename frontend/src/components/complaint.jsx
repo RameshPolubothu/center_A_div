@@ -1,9 +1,11 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { Navbar2 } from "./components";
 
 const complaint = () => {
   return (
     <>
+    <Navbar2/>
       <div className="flex min-h-screen w-full items-center justify-center bg-gray-50">
         <div className="relative mt-20 border border-gray-100 shadow-gray-500/20 max-w-md bg-white rounded-lg shadow-lg">
           <div className="relative border-b border-gray-300 p-4 py-2 ">
@@ -30,13 +32,18 @@ const complaint = () => {
                 placeholder="Roll number"
                 onChange={(e) => setRoom(e.target.value)}
               />
-              <input
-                id="issue"
-                type="text"
-                className="w-full sm:w-auto my-2 resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-orange-500 focus:outline-none "
-                placeholder="Roll number"
-                onChange={(e) => setRoom(e.target.value)}
-              />
+              <select
+                 id="issue"
+                 className="w-full sm:w-auto my-2 resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-orange-500 focus:outline-none"
+                 onChange={(e) => setRoom(e.target.value)}
+>
+                  <option disabled value="" selected style={{ color: '#888888' }}>Issue regarding</option>
+                  <option value="food">Food</option>
+                  <option value="water">Water</option>
+                  <option value="electricity">Electricity</option>
+                  <option value="hostel_affairs">Hostel Affairs</option>
+              </select>
+
             </div>
             <label className="mt-5 mb-2 inline-block max-w-full">
               Brief the problem you are facing

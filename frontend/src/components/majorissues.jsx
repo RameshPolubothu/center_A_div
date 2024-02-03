@@ -1,7 +1,10 @@
-import { React } from "react";
+import { React, useState } from "react";
 
 const majorissues = (props) => {
-  const upvote = () => {};
+  const [vote, setVote] = useState(false);
+  const upvote = () => {
+    setVote(true);
+  };
   return (
     <div className="py-6 flex flex-wrap md:flex-nowrap">
       <div className="md:w-52 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
@@ -19,7 +22,7 @@ const majorissues = (props) => {
         <p className="leading-relaxed">{props.description}</p>
         <div className="flex justify-end pt-4">
           <button
-            className="flex justify-end p-2 bg-gray-500 rounded-full cursor-pointer"
+            className="flex justify-end p-2 pr-2 bg-gray-100 rounded-full cursor-pointer border-2 border-white hover:border-2 hover:border-newpurple"
             key={props.category}
             onClick={upvote}
           >
@@ -27,7 +30,7 @@ const majorissues = (props) => {
             <div className="inline-block">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-green-500"
+                className="h-6 w-6 text-newpurple"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -40,8 +43,11 @@ const majorissues = (props) => {
                 />
               </svg>
             </div>
-            <div className="inline-block text-green-500 font-bold">Upvote</div>
+            <div className="inline-block text-newpurple font-bold">Upvote</div>
           </button>
+          <span className="flex justify-center items-center text-md font-bold pl-4 rounded-full bg-slate-200 pr-4">
+            {props.voteCount}
+          </span>
         </div>
       </div>
     </div>

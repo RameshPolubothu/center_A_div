@@ -7,6 +7,7 @@ import {
   Dashboard,
   Categories,
   Details,
+  Tabledata,
 } from "./components/components";
 import {
   BrowserRouter as Router,
@@ -14,7 +15,7 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import { Home, About, Contact } from "./sections/sections";
+import { Home, Admin, Contact } from "./sections/sections";
 
 const App = () => {
   return (
@@ -23,7 +24,7 @@ const App = () => {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/" element={<Navigate replace to="/home" />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/tabledata" element={<Tabledata />} />
         <Route path="/contact" element={<Contact />} />
 
         <Route path="/login" element={<Login />} />
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/complaint" element={<Complaint />} />
       </Routes>
     </Router>
+    // <Tabledata />
   );
 };
 

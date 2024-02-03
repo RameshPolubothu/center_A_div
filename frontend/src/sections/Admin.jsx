@@ -1,33 +1,6 @@
-import { useState, React } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-
-const login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:3000/login", {
-        email,
-        password,
-      });
-      console.log(response);
-
-      if (response.data) {
-        const token = response.data.token;
-        localStorage.setItem("token", token);
-        navigate("/dashboard");
-      } else {
-        console.log("Invalid response format from server!");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
+import React from "react";
+import { Link } from "react-router-dom";
+const Admin = () => {
   return (
     <>
       <div className="flex min-h-screen w-full items-center justify-center bg-gray-50">
@@ -36,16 +9,16 @@ const login = () => {
             <div className="flex-auto p-6">
               <div className="mb-6 flex flex-shrink-0 flex-grow-0 items-center justify-center overflow-hidden">
                 <span className="flex items-center gap-2 text-[#89288f] flex-shrink-0 text-3xl font-black tracking-normal opacity-100">
-                  Login
+                  Admin Login
                 </span>
               </div>
 
-              <h4 className="mb-2 font-medium text-gray-700 xl:text-xl">
+              {/* <h4 className="mb-2 font-medium text-gray-700 xl:text-xl">
                 Welcome!
               </h4>
               <p className="mb-6 text-gray-500">
                 Please sign-in to access your account
-              </p>
+              </p> */}
               <form className="mb-4" action="#" method="POST">
                 <div className="mb-4">
                   <label
@@ -89,20 +62,20 @@ const login = () => {
                   <button
                     className="grid w-full cursor-pointer select-none rounded-md border bg-newpurple py-2 px-5 text-center align-middle text-sm font-bold text-white shadow hover:border-[#75237a] hover:bg-[#75237a] hover:text-white focus:border-[#75237a] focus:bg-[#75237a] focus:text-white focus:shadow-none tracking-wide"
                     type="submit"
-                    onClick={onSubmit}
+                    // onClick={onSubmit}
                   >
                     Sign in
                   </button>
                 </div>
               </form>
               <p className="mb-4 text-center">
-                Don't have an account yet?{" "}
+                {/* Don't have an account yet?{" "}
                 <Link
                   to="/register"
                   className="cursor-pointer text-newpurple underline hover:text-orange-500 hover:underline-offset-2 ms-2"
                 >
                   Create an account
-                </Link>
+                </Link> */}
               </p>
             </div>
           </div>
@@ -112,4 +85,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Admin;
