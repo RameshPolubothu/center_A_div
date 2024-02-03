@@ -1,109 +1,54 @@
 import React from "react";
-import { Categories } from "./components";
+import { Categories, MajorIssues } from "./components";
+
+// RETRIEVE DATA FROM DATABASE AND SHOW IT HERE
+// MOST UPVOTED COMMUNITY COMPLAINT IN THE PAST 3 or 2 DAYS
 
 const dashboard = () => {
   return (
     <>
       <div className="flex flex-col lg:flex-row">
         <section className="text-gray-600 overflow-hidden w-full lg:w-3/4">
-          <div className="container px-5 py-24 mx-auto">
-            <div className="-my-8 divide-y-2 divide-gray-100">
-              <div className="py-8 flex flex-wrap md:flex-nowrap">
-                <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                  <span className="font-semibold title-font text-gray-700">
-                    CATEGORY
-                  </span>
-                  <span className="mt-1 text-gray-500 text-sm">
-                    12 Jun 2019
-                  </span>
-                </div>
-                <div className="md:flex-grow">
-                  <h2 className="text-2xl font-medium text-gray-900 title-font mb-2">
-                    Bitters hashtag waistcoat fashion axe chia unicorn
-                  </h2>
-                  <p className="leading-relaxed">
-                    Glossier echo park pug, church-key sartorial biodiesel
-                    vexillologist pop-up snackwave ramps cornhole. Marfa 3 wolf
-                    moon party messenger bag selfies, poke vaporware kombucha
-                    lumbersexual pork belly polaroid hoodie portland craft beer.
-                  </p>
-                </div>
-              </div>
-              <div className="py-8 flex flex-wrap md:flex-nowrap">
-                <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                  <span className="font-semibold title-font text-gray-700">
-                    CATEGORY
-                  </span>
-                  <span className="mt-1 text-gray-500 text-sm">
-                    12 Jun 2019
-                  </span>
-                </div>
-                <div className="md:flex-grow">
-                  <h2 className="text-2xl font-medium text-gray-900 title-font mb-2">
-                    Meditation bushwick direct trade taxidermy shaman
-                  </h2>
-                  <p className="leading-relaxed">
-                    Glossier echo park pug, church-key sartorial biodiesel
-                    vexillologist pop-up snackwave ramps cornhole. Marfa 3 wolf
-                    moon party messenger bag selfies, poke vaporware kombucha
-                    lumbersexual pork belly polaroid hoodie portland craft beer.
-                  </p>
-                  {/* <a className="text-green-500 inline-flex items-center mt-4">
-                    Learn More
-                    <svg
-                      className="w-4 h-4 ml-2"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path d="M5 12h14"></path>
-                      <path d="M12 5l7 7-7 7"></path>
-                    </svg>
-                  </a> */}
-                </div>
-              </div>
-              <div className="py-8 flex flex-wrap md:flex-nowrap">
-                <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                  <span className="font-semibold title-font text-gray-700">
-                    CATEGORY
-                  </span>
-                  <span className="text-sm text-gray-500">12 Jun 2019</span>
-                </div>
-                <div className="md:flex-grow">
-                  <h2 className="text-2xl font-medium text-gray-900 title-font mb-2">
-                    Woke master cleanse drinking vinegar salvia
-                  </h2>
-                  <p className="leading-relaxed">
-                    Glossier echo park pug, church-key sartorial biodiesel
-                    vexillologist pop-up snackwave ramps cornhole. Marfa 3 wolf
-                    moon party messenger bag selfies, poke vaporware kombucha
-                    lumbersexual pork belly polaroid hoodie portland craft beer.
-                  </p>
-                  {/* <a className="text-green-500 inline-flex items-center mt-4">
-                    Learn More
-                    <svg
-                      className="w-4 h-4 ml-2"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path d="M5 12h14"></path>
-                      <path d="M12 5l7 7-7 7"></path>
-                    </svg>
-                  </a> */}
-                </div>
-              </div>
+          <div className="container px-10 py-24 mx-auto">
+            <div className="m-4 divide-y-2 divide-newpurple">
+              <MajorIssues
+                roll_no="210010012"
+                timestamp=""
+                category="FOOD"
+                heading="Regarding the maintenance of mess and cleanliness"
+                description="Hey everyone, noticed some utensils haven't been cleaned thoroughly
+          lately. Let's make sure we give them a good wash to keep our shared
+          spaces clean and hygienic. Your cooperation is much appreciated! 🍽️🧼
+          #CleanUpCrew"
+              />
+              <MajorIssues
+                roll_no="210020014"
+                timestamp=""
+                category="WATER"
+                heading="Regarding the maintenance of mess and cleanliness"
+                description="Hey everyone, noticed some utensils haven't been cleaned thoroughly
+          lately. Let's make sure we give them a good wash to keep our shared
+          spaces clean and hygienic. Your cooperation is much appreciated! 🍽️🧼
+          #CleanUpCrew"
+              />
+              <MajorIssues
+                roll_no="210020018"
+                timestamp=""
+                category="ELECTRICITY"
+                heading="Regarding the maintenance of mess and cleanliness"
+                description="Hey everyone, noticed some utensils haven't been cleaned thoroughly
+          lately. Let's make sure we give them a good wash to keep our shared
+          spaces clean and hygienic. Your cooperation is much appreciated! 🍽️🧼
+          #CleanUpCrew"
+              />
             </div>
           </div>
         </section>
 
-        <section className="text-gray-600 body-font w-full lg:w-1/4 pt-28">
+        <section className="text-orange-600 body-font w-full lg:w-1/4 pt-28">
+          <div className=" font-medium text-xl px-2 py-3 hover:underline hover:underline-offset-3">
+            Complaint Status & New Complaints ?
+          </div>
           <Categories category="Food" />
           <Categories category="Water" />
           <Categories category="Electricity" />
