@@ -72,6 +72,20 @@ app.post('/register', async (req, res) => {
   }
 });
 
+app.post('/complaintRegister', async (req, res) => {
+  const { description, rollNumber, issue } = req.body;
+
+  try {
+    await client.query('INSERT INTO complaint (created_by, assigned_at, label, description, mailid) VALUES ($1, current_timestamp, $2, $3, $4)', [rollNumber, issue, description, "admin@gmail.com"]);
+
+
+    res.status(200).json({ message: 'Complaint registered successfully' });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
