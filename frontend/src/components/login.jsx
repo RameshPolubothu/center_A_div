@@ -12,23 +12,16 @@ const login = () => {
         email,
         password,
       });
-
       console.log(response);
 
       if(response.data){
-      // Assuming the backend sends a JWT token upon successful login
       const token = response.data.token;
-
-      // Save the token to localStorage for future authenticated requests
       localStorage.setItem('token', token);
-
-      // Redirect to a protected route or perform other actions after successful login
       } else {
         console.log('Invalid response format from server!');
       }
     } catch (error) {
       console.error(error.response.data.error);
-      // Handle login failure (display an error message, etc.)
     }
   };
 

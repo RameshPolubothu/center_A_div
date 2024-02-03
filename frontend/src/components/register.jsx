@@ -25,7 +25,6 @@ export default function register() {
       });
     
       console.log(response.data.message);
-      // Optionally, you can redirect to the login page or perform other actions
     } catch (error) {
       console.log(error.response.data.error);
     }
@@ -42,10 +41,6 @@ export default function register() {
                   Sign Up
                 </span>
               </div>
-              {/* 
-              <h4 className="mb-2 font-medium text-gray-700 xl:text-xl">
-                Welcome!
-              </h4> */}
               <p className="mb-6 text-gray-500">
                 Please sign-in to access your account
               </p>
