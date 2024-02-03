@@ -1,59 +1,36 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
-function register() {
-  // const [fullname, setFullname] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [phone, setPhone] = useState("");
-  // const [role, setRole] = useState(Roles.STUDENT);
-  // const [block_id, setBlock_id] = useState("");
-  // const [usn, setUsn] = useState("");
-  // const [room, setRoom] = useState("");
-  // const onSubmit = async (e) => {
-  //   e.preventDefault();
+export default function register() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [mobile_no, setMobile_No] = useState("");
+  const [hostel_no, setHostel_No] = useState("");
+  const [wing, setWing] = useState("");
+  const [room, setRoom] = useState("");
+  const onSubmit = async (e) => {
+    e.preventDefault();
 
-  //   try {
-  //     // const body = {full_name:fullname, email, password,phone, type: role, block_id, usn, room}
-  //     let body;
-  //     if (role === Roles.WARDEN) {
-  //       body = {
-  //         full_name: fullname,
-  //         email,
-  //         password,
-  //         phone,
-  //         type: role,
-  //         block_id,
-  //       };
-  //     } else {
-  //       body = {
-  //         full_name: fullname,
-  //         email,
-  //         password,
-  //         phone,
-  //         type: role,
-  //         block_id,
-  //         usn,
-  //         room,
-  //       };
-  //     }
-  //     const response = await fetch("http://localhost:3000/register", {
-  //       method: "POST",
-  //       headers: { "content-type": "application/json " },
-  //       body: JSON.stringify(body),
-  //     });
-  //     console.log(response);
-  //     const data = await response.json();
-  //     console.log(data);
-  //     if (data.jwtToken) {
-  //       window.location = "/";
-  //     } else {
-  //       alert("user already exists");
-  //     }
-  //   } catch (err) {
-  //     console.log(err.message);
-  //   }
-  // };
+    try {
+      const response = await axios.post('http://localhost:3000/register', { 
+        name: name, 
+        password_hash: password, 
+        email: email, 
+        room_no: room, 
+        wing: wing, 
+        hostel_no: hostel_no, 
+        mobile_number: mobile_no,
+      });
+    
+      console.log(response.data.message);
+      // Optionally, you can redirect to the login page or perform other actions
+    } catch (error) {
+      console.log(error.response.data.error);
+    }
+
+  };
   return (
     <>
       <div className="flex min-h-screen w-full items-center justify-center text-gray-600 bg-gray-50">
@@ -61,7 +38,7 @@ function register() {
           <div className="relative flex sm:w-full md:w-[30rem] rounded-lg border-gray-600 bg-white shadow-lg px-4">
             <div className="flex-auto p-6">
               <div className="mb-6 flex flex-shrink-0 flex-grow-0 items-center justify-center overflow-hidden">
-                <span className="flex items-center gap-2 text-[#89288f] flex-shrink-0 text-3xl font-black  tracking-normal opacity-100">
+                <span className="flex items-center gap-2 text-[#89288f] flex-shrink-0 text-3xl font-black  tracking-tight opacity-100">
                   Sign Up
                 </span>
               </div>
@@ -78,7 +55,7 @@ function register() {
                   <div className="flex justify-between">
                     <label
                       className="mb-2 inline-block text-xs font-medium uppercase text-gray-700"
-                      htmlFor="fullname"
+                      htmlFor="name"
                     >
                       Full Name
                     </label>
@@ -87,9 +64,9 @@ function register() {
                     <input
                       type="text"
                       className="relative block flex-auto cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-orange-500 focus:bg-white focus:text-gray-600 focus:shadow"
-                      name="full-name"
+                      name="name"
                       placeholder="Enter your full name"
-                      onChange={(element) => setFullname(element.target.value)}
+                      onChange={(element) => setName(element.target.value)}
                     />
                   </div>
                 </div>
@@ -113,7 +90,7 @@ function register() {
                   </div>
                   <div className="flex-1">
                     <label
-                      htmlFor="phonenumber"
+                      htmlFor="mobile_no"
                       className="mb-2 inline-block text-xs font-medium uppercase text-gray-700"
                     >
                       Phone Number
@@ -121,9 +98,9 @@ function register() {
                     <input
                       type="text"
                       className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-orange-500 focus:bg-white focus:text-gray-600 focus:shadow"
-                      name="phone-number"
+                      name="mobile_no"
                       placeholder="Enter your phone number"
-                      onChange={(element) => setPhone(element.target.value)}
+                      onChange={(element) => setMobile_No(element.target.value)}
                     />
                   </div>
                 </div>
@@ -131,18 +108,18 @@ function register() {
                 <div className="mb-4 flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
                   <div className="flex-1">
                     <label
-                      htmlFor="hostel"
+                      htmlFor="hostel_no"
                       className="mb-2 inline-block text-xs font-medium uppercase text-gray-700"
                     >
                       Hostel No.
                     </label>
                     <div className="relative">
                       <select
-                        id="hostel"
-                        name="hostel"
+                        id="hostel_no"
+                        name="hostel_no"
                         className="block w-full cursor-pointer appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-gray-400 text-sm outline-none focus:border-orange-500 focus:bg-white"
                         onChange={(element) =>
-                          setBlock_id(element.target.value)
+                          setHostel_No(element.target.value)
                         }
                       >
                         <option value="" disabled selected>
@@ -166,18 +143,18 @@ function register() {
 
                   <div className="flex-1 relative">
                     <label
-                      htmlFor="blockId"
+                      htmlFor="wing"
                       className="mb-2 inline-block text-xs font-medium uppercase text-gray-700"
                     >
-                      Block ID
+                      WING
                     </label>
                     <div className="relative">
                       <select
-                        id="blockId"
-                        name="blockId"
+                        id="wing"
+                        name="wing"
                         className="block w-full cursor-pointer appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-orange-500 focus:bg-white text-gray-400 "
                         onChange={(element) =>
-                          setBlock_id(element.target.value)
+                          setWing(element.target.value)
                         }
                       >
                         <option value="" disabled selected>
@@ -204,7 +181,7 @@ function register() {
 
                   <div className="flex-1">
                     <label
-                      htmlFor="password"
+                      htmlFor="room_no"
                       className="mb-2 inline-block text-xs font-medium uppercase text-gray-700"
                     >
                       Room
@@ -212,7 +189,7 @@ function register() {
                     <input
                       type="text"
                       className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white text-gray-400 focus:shadow"
-                      name="password"
+                      name="room_no"
                       placeholder="Room No."
                       onChange={(element) => setRoom(element.target.value)}
                     />
@@ -241,7 +218,7 @@ function register() {
                 <div className="mb-4">
                   <button
                     className="grid w-full cursor-pointer select-none rounded-md border bg-newpurple py-2 px-5 text-center align-middle text-sm font-bold text-white shadow hover:border-[#75237a] hover:bg-[#75237a] hover:text-white focus:border-[#75237a] focus:bg-[#75237a] focus:text-white focus:shadow-none tracking-wide"
-                    // onClick={onSubmit}
+                    onClick={onSubmit}
                   >
                     Sign Up
                   </button>
@@ -264,6 +241,4 @@ function register() {
       </div>
     </>
   );
-}
-
-export default register;
+};

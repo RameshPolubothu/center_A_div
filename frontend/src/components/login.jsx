@@ -4,6 +4,34 @@ import { Link, useNavigate } from "react-router-dom";
 const login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:3000/login', {
+        email,
+        password,
+      });
+
+      console.log(response);
+
+      if(response.data){
+      // Assuming the backend sends a JWT token upon successful login
+      const token = response.data.token;
+
+      // Save the token to localStorage for future authenticated requests
+      localStorage.setItem('token', token);
+
+      // Redirect to a protected route or perform other actions after successful login
+      } else {
+        console.log('Invalid response format from server!');
+      }
+    } catch (error) {
+      console.error(error.response.data.error);
+      // Handle login failure (display an error message, etc.)
+    }
+  };
+
   return (
     <>
       <div className="flex min-h-screen w-full items-center justify-center bg-gray-50">
@@ -24,7 +52,8 @@ const login = () => {
               </p>
               <form
                 className="mb-4"
-                // HERE onSubmit={onSubmit}
+                action="#"
+                method="POST"
               >
                 <div className="mb-4">
                   <label
@@ -68,7 +97,7 @@ const login = () => {
                   <button
                     className="grid w-full cursor-pointer select-none rounded-md border bg-newpurple py-2 px-5 text-center align-middle text-sm font-bold text-white shadow hover:border-[#75237a] hover:bg-[#75237a] hover:text-white focus:border-[#75237a] focus:bg-[#75237a] focus:text-white focus:shadow-none tracking-wide"
                     type="submit"
-                    // onClick={handleButtonClick}
+                    onClick={onSubmit}
                   >
                     Sign in
                   </button>
