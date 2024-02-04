@@ -14,6 +14,12 @@ CREATE TABLE student (
     email VARCHAR(255) NOT NULL,
     is_admin boolean NOT NULL DEFAULT FALSE
 );
+INSERT INTO student (roll_no, password_hash, name, hostel_no, room_no, wing, mobile_number, email, is_admin)
+VALUES 
+(210010039, '123456', 'Ramesh', 'hostel-2', '513', 'C', 9346567339, '210010039@gmail.com', false),
+(210010012, '123456', 'Rahul', 'hostel-2', '510', 'B', 9865986544, '210010012@gmail.com', false),
+(210020014, '123456', 'Praneeth', 'hostel-2', '510', 'B', 7878787878, '210020014@gmail.com', false);
+(0, 'admin@123', 'admin', 'hostel-1', '111', 'A', 9999999999, '000000000@gmail.com', true);
 
 CREATE TABLE complaint (
     id SERIAL PRIMARY KEY,
@@ -25,3 +31,9 @@ CREATE TABLE complaint (
     mailid VARCHAR(255), -- Add mailid column
     upvotes INTEGER DEFAULT 1
 );
+
+INSERT INTO complaint (created_at, created_by, assigned_at,description, label, mailid)
+VALUES 
+(CURRENT_TIMESTAMP, 210010039,CURRENT_TIMESTAMP, 'There is a problem with the water supply in Hostel A.', 'water', 'admin@gmail.com'),
+(CURRENT_TIMESTAMP, 210020014,CURRENT_TIMESTAMP, 'There is a problem with the electricity in Hostel B.', 'electricity', 'admin@gmail.com'),
+(CURRENT_TIMESTAMP, 210010012,CURRENT_TIMESTAMP, 'There is a problem with the food in mess today.', 'food', 'admin@gmail.com');
