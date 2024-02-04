@@ -18,7 +18,7 @@ INSERT INTO student (roll_no, password_hash, name, hostel_no, room_no, wing, mob
 VALUES 
 (210010039, '123456', 'Ramesh', 'hostel-2', '513', 'C', 9346567339, '210010039@gmail.com', false),
 (210010012, '123456', 'Rahul', 'hostel-2', '510', 'B', 9865986544, '210010012@gmail.com', false),
-(210020014, '123456', 'Praneeth', 'hostel-2', '510', 'B', 7878787878, '210020014@gmail.com', false);
+(210020014, '123456', 'Praneeth', 'hostel-2', '510', 'B', 7878787878, '210020014@gmail.com', false),
 (0, 'admin@123', 'admin', 'hostel-1', '111', 'A', 9999999999, '000000000@gmail.com', true);
 
 CREATE TABLE complaint (
