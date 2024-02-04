@@ -1,6 +1,7 @@
 -- create the database
 -- CREATE DATABASE paradise;
 
+---***the email should have the first 9 digits as number for roll number ex:210010001@gmail.com ****---
 -- create a table for student
 CREATE TABLE student (
     student_id SERIAL PRIMARY KEY,
