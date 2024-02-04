@@ -32,9 +32,9 @@ const complaint = () => {
 
       if (response.data.success) {
         console.error("Complaint registration failed:", response.data);
-        navigate("/dashboard");
       } else {
         console.log("Complaint registered successfully:", response.data);
+        navigate("/dashboard");
       }
     } catch (error) {
       console.error("An error occurred during complaint registration:", error);
