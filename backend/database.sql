@@ -11,8 +11,8 @@ CREATE TABLE student (
     room_no VARCHAR(10) NOT NULL,
     wing CHAR(1) NOT NULL,
     mobile_number BIGINT NOT NULL,
-    email VARCHAR(255) NOT NULL-- Add email column
-    -- is_student boolean NOT NULL
+    email VARCHAR(255) NOT NULL,
+    is_admin boolean NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE complaint (

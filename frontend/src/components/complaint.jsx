@@ -31,10 +31,10 @@ const complaint = () => {
       );
 
       if (response.data.success) {
-        console.log("Complaint registered successfully:", response.data);
+        console.error("Complaint registration failed:", response.data);
         navigate("/dashboard");
       } else {
-        console.error("Complaint registration failed:", response.data);
+        console.log("Complaint registered successfully:", response.data);
       }
     } catch (error) {
       console.error("An error occurred during complaint registration:", error);
@@ -73,7 +73,7 @@ const complaint = () => {
               <select
                 id="issue"
                 className="w-full sm:w-auto my-2 resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-orange-500 focus:outline-none"
-                onChange={(e) => setRoom(e.target.value)}
+                onChange={(e) => setIssue(e.target.value)}
               >
                 <option disabled value="" selected style={{ color: "#888888" }}>
                   Issue regarding

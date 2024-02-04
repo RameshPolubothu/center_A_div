@@ -1,15 +1,50 @@
-import React from "react";
+import {React, useState, useEffect} from "react";
 import { Navbar2 } from "./components";
+import axios from "axios";
 
 const TableData = () => {
   const data = [
     { id: 1, className: "Default", heading1: "Cell", heading2: "Cell" },
     // Add more data as needed
   ];
+  
+  const [complaints, setComplaints] = useState([]);
 
-  const handleAssignClick = (id) => {
-    // Handle Assign button click here
-    console.log(`Assign button clicked for row with id ${id}`);
+  const handleAssignClick = async (complaintId) => {
+    try {
+      // Send a DELETE request to the server
+      const response = await axios.delete(`http://localhost:3000/admin/complaints/${complaintId}`);
+      
+      setComplaints((prevComplaints) =>
+        prevComplaints.filter((complaint) => complaint.id !== complaintId)
+      );
+      
+      if (response.data.success) {
+        // Handle success (optional)
+        console.log('Complaint marked as done');
+      } else {
+        // Handle failure (optional)
+        console.log('Failed to mark complaint as done');
+      }
+    } catch (error) {
+      // Handle error (optional)
+      console.error('Error marking complaint as done:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/complaintsList");
+      const data = await response.json();
+      console.log(data);
+      setComplaints(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   return (
@@ -26,40 +61,40 @@ const TableData = () => {
                 <thead className="border-b font-medium dark:border-neutral-500">
                   <tr>
                     <th scope="col" className="px-6 py-4">
-                      className
+                      Roll Number
                     </th>
                     <th scope="col" className="px-6 py-4">
-                      Heading1
+                      Label
                     </th>
                     <th scope="col" className="px-6 py-4">
-                      Heading2
+                      Description
                     </th>
                     <th scope="col" className="px-6 py-4">
-                      Assign
+                      Work Done
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {data.map((item) => (
+                  {complaints.map((complaint) => (
                     <tr
-                      key={item.id}
+                      key={complaint.id}
                       className="border-b dark:border-neutral-500"
                     >
                       <td className="whitespace-nowrap px-6 py-4 font-medium">
-                        {item.className}
+                        {complaint.created_by}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
-                        {item.heading1}
+                        {complaint.label}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
-                        {item.heading2}
+                        {complaint.description}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
                         <button
-                          onClick={() => handleAssignClick(item.id)}
+                          onClick={() => handleAssignClick(complaint.id)}
                           className="bg-green-500 text-white px-2 py-1 rounded-md"
                         >
-                          Assign
+                          Mark as Done
                         </button>
                       </td>
                     </tr>

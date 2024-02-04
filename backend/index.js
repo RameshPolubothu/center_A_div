@@ -15,7 +15,7 @@ const client = new Client({
   user: "postgres",
   host: "localhost",
   database: "helpdesk",
-  password: "1973",
+  password: "KarthikPK007",
   port: 5432,
 });
 
@@ -34,11 +34,13 @@ app.post("/login", async (req, res) => {
       const user = result.rows[0];
 
       if (await bcrypt.compare(password, user.password_hash)) {
-        const token = jwt.sign({ userId: user.student_id }, "secret-key", {
-          expiresIn: "1h",
-        });
+        const isAdmin = user.is_admin;
 
-        res.json({ token });
+        // Create and sign a JWT token
+        const token = jwt.sign({ userId: user.id, isAdmin }, 'your_jwt_secret');
+
+        // Send the token and isAdmin flag in the response
+        res.json({ token, isAdmin });
       } else {
         res.status(401).json({ error: "Invalid password" });
       }
@@ -124,6 +126,24 @@ app.get("/complaintsList", async (req, res) => {
   } catch (error) {
     console.error("Error fetching data:", error);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.delete('/admin/complaints/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Perform the deletion in the database based on the complaint ID
+    const result = await client.query('DELETE FROM complaint WHERE id = $1', [id]);
+
+    if (result.rowCount === 1) {
+      res.json({ success: true, message: 'Complaint marked as done' });
+    } else {
+      res.status(404).json({ success: false, message: 'Complaint not found' });
+    }
+  } catch (error) {
+    console.error('Error deleting complaint:', error);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 });
 

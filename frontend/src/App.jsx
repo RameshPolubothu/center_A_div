@@ -16,6 +16,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { Home, Admin, Contact } from "./sections/sections";
+import TableData from "./components/tabledata";
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/admin" element={<TableData />} />
         <Route path="/complaint" element={<Complaint />} />
       </Routes>
     </Router>

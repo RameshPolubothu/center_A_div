@@ -28,7 +28,7 @@ export default function register() {
       console.log(response.data.message);
       navigate('/dashboard');
     } catch (error) {
-      console.log(error.response.data.error);
+      console.log(error);
     }
 
   };

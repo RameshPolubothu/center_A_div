@@ -19,7 +19,12 @@ const login = () => {
       if (response.data) {
         const token = response.data.token;
         localStorage.setItem("token", token);
-        navigate("/dashboard");
+        console.log("Login successful:", response.data);
+        if(response.data.isAdmin){
+        navigate("/admin");
+        } else {
+          navigate("/dashboard");
+        }
       } else {
         console.log("Invalid response format from server!");
       }
