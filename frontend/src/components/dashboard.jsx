@@ -36,6 +36,7 @@ const dashboard = () => {
                   category={complaint.label}
                   heading={"Problems regarding " + complaint.label}
                   description={complaint.description}
+                  voteCount={complaint.upvotes}
                 />
               ))}
             </div>

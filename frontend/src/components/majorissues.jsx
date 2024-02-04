@@ -1,9 +1,11 @@
 import { React, useState } from "react";
 
 const majorissues = (props) => {
-  const [vote, setVote] = useState(false);
-  const upvote = () => {
-    setVote(true);
+  const [vote, setVote] = useState(props.voteCount); 
+  const [upvote, setUpvote] = useState(false); 
+  const upvotefn = () => {
+    setUpvote(true);
+    setVote(prev => prev + 1);
   };
   return (
     <div className="py-6 flex flex-wrap md:flex-nowrap">
@@ -24,7 +26,7 @@ const majorissues = (props) => {
           <button
             className="flex justify-end p-2 pr-2 bg-gray-100 rounded-full cursor-pointer border-2 border-white hover:border-2 hover:border-newpurple"
             key={props.category}
-            onClick={upvote}
+            onClick={upvotefn}
           >
             {/* Upvote icon (you can replace the content inside the button with your icon) */}
             <div className="inline-block">
